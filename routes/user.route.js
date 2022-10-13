@@ -18,7 +18,7 @@ const verifyToken = require("../middlewares/verifyToken.middleware");
 const router = express.Router();
 
 router.post("/avatar", upload.single("avatar"), avatarUpload);
-router.get("/all", verifyToken, authorization("user"), displayAllUsers);
+router.get("/all", verifyToken, authorization("admin"), displayAllUsers);
 router.post("/signup", registerAnUser);
 router.post("/signin", loggedAnUser);
 router.get("/:token", confirmEmail);
