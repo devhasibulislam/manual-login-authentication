@@ -1,19 +1,19 @@
 /**
- * Title: A group project demonstration
- * Description: A simple and minimal group project to demonstrate GitHub team workflow & collaboration
- * Author: Momentum Signal
+ * Title: Login Authentication System
+ * Description: A manual login authentication system with security
+ * Author: Hasibul Islam
  * Date: 05/10/2022
  */
 
 /* external imports */
 const express = require("express");
+const mongoose = require("mongoose");
 const cors = require("cors");
 const colors = require("colors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
 /* internal imports */
-const dbConnection = require("./utilities/db.utility");
 const errorHandler = require("./middlewares/error.middleware");
 
 /* router level connection */
@@ -36,7 +36,16 @@ app.use(router);
 app.use(errorHandler);
 
 /* db connection */
-dbConnection();
+mongoose
+  .connect(process.env.DB_URI, {
+    dbName: "manual-login-authentication",
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() =>
+    console.log(colors.yellow.bold("Success: establishing DB connection"))
+  )
+  .catch((error) => console.log(colors.red.underline(`Error: ${error.name}`)));
 
 /* enable connection */
 app.get("/", (req, res) => {
