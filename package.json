@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node index.js"
   },
-  "repository": "https://github.com/momentum-signal/demo-group-project-server",
-  "author": "Momentum Signal",
+  "repository": "https://github.com/hasibulislam999/manual-login-authentication",
+  "author": "Hasibul Islam",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
