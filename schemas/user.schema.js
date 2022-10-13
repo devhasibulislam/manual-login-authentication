@@ -55,7 +55,6 @@ const userSchema = mongoose.Schema(
     },
     avatar: {
       type: String,
-      unique: [true, "Avatar exists, provide a new"],
       default:
         "https://i.pinimg.com/564x/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.jpg",
     },
@@ -105,7 +104,8 @@ userSchema.pre("save", async function (next) {
       return;
     }
 
-    const hash = bcrypt.hashSync(this.password);
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(this.password, salt);
     this.password = hash;
     this.confirmPassword = undefined;
   } catch (error) {
