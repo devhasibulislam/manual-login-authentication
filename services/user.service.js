@@ -6,7 +6,7 @@ const User = require("../schemas/user.schema");
 const { getToken } = require("../utilities/token.utility");
 
 exports.displayAllUserServices = async () => {
-  const result = await User.find({}).select("-password -confirmPassword");
+  const result = await User.find({role: "user"}).select("-password -confirmPassword");
   return result;
 };
 
